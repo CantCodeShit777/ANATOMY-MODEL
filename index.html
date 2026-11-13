@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Anatomy Atlas</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/atlas.css">
+</head>
+<body>
+<header class="hdr">
+  <h1 class="ttl">Anatomy Atlas</h1>
+  <div class="segs" role="group" aria-label="Layer" id="modes"></div>
+  <button class="vbtn side-toggle" id="sideToggle" aria-expanded="true" title="Hide the information panel">Hide panel</button>
+</header>
+
+<div class="shell" id="shell">
+
+  <section class="stage" aria-label="3D model">
+    <div class="view">
+      <canvas id="anat" aria-label="Interactive 3D human anatomy model"></canvas>
+      <p class="loading" id="loading">Loading the 3D model…</p>
+      <div class="hover-tag" id="hover" hidden></div>
+    </div>
+
+    <div class="toolbar">
+      <div class="views" role="group" aria-label="View" id="views"></div>
+      <div class="tb-spacer"></div>
+      <div class="overlay-ctl" id="overlayCtl" hidden>
+        <label for="ov">Skin overlay</label>
+        <input id="ov" type="range" min="0" max="90" step="5" value="0" title="Fade the skin back in over the muscles or bones">
+      </div>
+      <div class="zm" role="group" aria-label="Zoom">
+        <button class="vbtn" aria-label="Zoom in" title="Zoom in" data-act="zoomIn"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M8 3v10M3 8h10"/></svg></button>
+        <button class="vbtn" aria-label="Zoom out" title="Zoom out" data-act="zoomOut"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M3 8h10"/></svg></button>
+      </div>
+    </div>
+  </section>
+
+  <aside class="panel" aria-label="Information">
+    <button class="ptoggle" id="ptoggle" aria-expanded="true"><span id="ptoggleTitle">Information and structure list</span><span class="hint" id="ptoggleHint">Hide panel</span></button>
+    <div class="pbody">
+      <div class="info" id="info" aria-live="polite"></div>
+
+      <div class="browse">
+        <label for="q" class="lab" id="browseLabel">Browse muscles</label>
+        <input id="q" class="srch" type="search" placeholder="Search by name, e.g. biceps" autocomplete="off">
+        <span class="count" id="count"></span>
+      </div>
+      <div id="groups"></div>
+
+      <p class="credit">3D anatomy from BodyParts3D, © The Database Center for Life Science, licensed under <a href="https://creativecommons.org/licenses/by-sa/2.1/jp/deed.en" target="_blank" rel="noopener">CC BY-SA 2.1 Japan</a>. Meshes simplified and reshaped for this atlas. L and R on the floor mark the model’s own left and right.</p>
+    </div>
+  </aside>
+</div>
+
+<script src="vendor/three.min.js"></script>
+<script src="data/anatomy-pack.js"></script>
+<script src="data/anatomy-info.js"></script>
+<script src="js/anatomy-viewer.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
